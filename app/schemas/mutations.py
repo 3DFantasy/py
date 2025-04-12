@@ -1,5 +1,6 @@
 import strawberry
 
+
 @strawberry.type
 class Test:
     job_id: str
@@ -15,4 +16,3 @@ class Mutation:
         info: strawberry.Info,
     ) -> Test:
         print("test")
-

@@ -6,4 +6,3 @@ router = APIRouter()
 @router.get("/")
 def index():
     return {"status": "ok"}
-

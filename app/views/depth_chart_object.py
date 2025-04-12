@@ -1,4 +1,5 @@
-from typing import  TypedDict
+from typing import TypedDict
+
 
 class DepthChartObject(TypedDict):
     title: str
