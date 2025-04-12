@@ -4,13 +4,18 @@ from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
+from app.rq_config import rq_lifespan_end, rq_lifespan_start
+
+load_dotenv(override=True, verbose=True)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    worker_processes = rq_lifespan_start()
 
     yield  # FastAPI runs during this phase
 
-load_dotenv(override=True)
+    rq_lifespan_end(worker_processes=worker_processes)
+
 
 
 app = FastAPI(lifespan=lifespan)
