@@ -1,6 +1,6 @@
 import strawberry
 from typing import Optional
-
+from prisma import Prisma
 
 
 @strawberry.type
@@ -14,6 +14,15 @@ class Test:
 class Query:
     @strawberry.field
     async def is_up(self) -> bool:
+        prisma = Prisma()
+        await prisma.connect()
 
-        print(f"isUp")
-        return True
+        account = await prisma.account.find_unique({
+            'email':"wilsonbirch@gmail.com"
+        })
+        
+        await prisma.disconnect()
+        if(account):
+          return True
+        else:
+          return False

@@ -1,5 +1,5 @@
 import os
-from app.routers import graphql
+from app.routers import graphql, health
 from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -28,7 +28,7 @@ app.add_middleware(
 # Include routers
 # app.include_router(auth.router)
 app.include_router(graphql.router)
-
+app.include_router(health.router)
 
 if __name__ == "__main__":
     import uvicorn
