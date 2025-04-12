@@ -8,6 +8,7 @@ from app.rq_config import rq_lifespan_end, rq_lifespan_start
 
 load_dotenv(override=True, verbose=True)
 
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     worker_processes = rq_lifespan_start()
@@ -15,7 +16,6 @@ async def lifespan(app: FastAPI):
     yield  # FastAPI runs during this phase
 
     rq_lifespan_end(worker_processes=worker_processes)
-
 
 
 app = FastAPI(lifespan=lifespan)

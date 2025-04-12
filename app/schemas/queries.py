@@ -9,7 +9,6 @@ class Test:
     job_queue: Optional[str]
 
 
-
 @strawberry.type
 class Query:
     @strawberry.field
@@ -17,12 +16,10 @@ class Query:
         prisma = Prisma()
         await prisma.connect()
 
-        account = await prisma.account.find_unique({
-            'email':"wilsonbirch@gmail.com"
-        })
-        
+        account = await prisma.account.find_unique({"email": "wilsonbirch@gmail.com"})
+
         await prisma.disconnect()
-        if(account):
-          return True
+        if account:
+            return True
         else:
-          return False
+            return False
