@@ -21,7 +21,8 @@ class Settings(BaseSettings):
     TEAM_9_URL: str
     PXP_API_URL: str
     FLY_WORKER_TOKEN: str
-    TEST:str
+    RQ_WORKER_NUMBER:str
+    RQ_QUEUE_NUMBER:str
 
     class Config:
         env_file = ".env"
